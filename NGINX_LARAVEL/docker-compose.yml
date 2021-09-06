@@ -1,0 +1,88 @@
+version: '3'
+
+networks: 
+  laravel:
+
+services: 
+
+  #NGINX Service
+  nginx:
+    image: nginx:stable-alpine
+    container_name: webserver
+    ports: 
+      - "8085:85"
+      - "8086:86"
+    volumes: 
+      - ./src:/var/www
+      - ./nginx:/etc/nginx/conf.d
+    depends_on: 
+      - php
+      - mysql
+    networks: 
+      - laravel
+  
+  #MYSQL SERVICE
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports: 
+      - "4306:3306"
+    volumes: 
+      - ./mysql:/var/lib/mysql
+    environment: 
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks: 
+      - laravel
+
+  # PHP
+  php:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: php
+    volumes: 
+      - ./src:/var/www
+    ports: 
+      - "9000:9000"
+    networks: 
+      - laravel
+
+  # PHPMYADMIN
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - "9090:80"
+    networks:
+      - laravel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

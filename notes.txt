@@ -1,0 +1,21 @@
+INSTALLATION
+
+- install docker desktop
+- install wsl & restart
+
+--------------------------
+# STARTING
+$ docker-compose up -d
+
+# LIST images
+$ docker-compose ps
+
+# To Tear Down
+$ docker-compose down --volumes
+
+# REMOVING
+$ docker-compose rm <service>
+
+# Means, pointing the current local dir to /var/www/html
+volumes:	
+  - ./:/var/www/html
