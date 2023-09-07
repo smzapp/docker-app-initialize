@@ -1,3 +1,41 @@
+ChatGPT recommended folder structure of docker
+
+project-root/
+|-- docker-compose.yml
+|-- laravel-backend/
+|   |-- app/
+|   |   |-- ... Laravel application files ...
+|   |-- database/
+|   |   |-- ... Database migrations, seeds, etc. ...
+|   |-- public/
+|   |   |-- ... Laravel's public files (e.g., index.php) ...
+|   |-- resources/
+|   |   |-- js/
+|   |   |   |-- ... Laravel's JavaScript (if any) ...
+|   |-- routes/
+|   |   |-- ... Laravel routes ...
+|   |-- storage/
+|   |-- ... Laravel config, views, etc. ...
+|-- react-frontend/
+|   |-- src/
+|   |   |-- ... React.js application files ...
+|   |-- public/
+|   |   |-- ... Public assets for the React app ...
+|   |-- ... React.js config, dependencies, etc. ...
+|-- nginx/
+|   |-- laravel.conf
+|-- docker/
+|   |-- php/
+|   |   |-- Dockerfile
+|   |-- nginx/
+|   |   |-- Dockerfile
+|   |-- ... Other Docker-related files ...
+|-- .env
+|-- .gitignore
+|-- ... Other project-specific files ...
+
+
+-------------------------------------------------------------------------
 INSTALLATION
 
 - install docker desktop
